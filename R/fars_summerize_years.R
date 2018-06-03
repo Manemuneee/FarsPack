@@ -22,8 +22,8 @@
 #' @export
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
-  dplyr::bind_rows(dat_list) %>%
-    dplyr::group_by('year', 'MONTH') %>%
-    dplyr::summarize('n' = ~n()) %>%
-    tidyr::spread('year', 'n')
+  dat_list1 <- dplyr::bind_rows(dat_list)
+  dat_list2 <- dplyr::group_by(dat_list1, 'year', 'MONTH')
+  dat_list3 <- dplyr::summarize(dat_list2, 'n' = ~n())
+  tidyr::spread(dat_list3, 'year', 'n')
 }
