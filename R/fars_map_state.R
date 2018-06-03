@@ -1,24 +1,30 @@
 #' This function takes year and a state number and plots the map of accidents. if the state number does not exist
 #' it will return an error. and if there are no accidents in a state it will stop and returns a message
 #'
+#'#' @references
+#'   \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
+#'
+#'
 #' @param state.num number of the target state
 #' @param year The target year
+#'
 #' @importFrom dplyr filter
 #' @importFrom maps map
 #' @importFrom graphics points
 #'
-#' @return a plot of accidents in the given state and the given year. it returns an error if the state does not exist and returns a message if there are no accidents in the given state
-#' @export
+#' \dontrun{
+#' fars_map_state(3,2015)
+#' }
 #'
-#' @examples fars_map_state(1, 2013)
+#' @export
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
   data <- fars_read(filename)
   state.num <- as.integer(state.num)
-  
+
   if(!(state.num %in% unique(data$STATE)))
     stop("invalid STATE number: ", state.num)
-  data.sub <- dplyr::filter(data, STATE == state.num)
+  data.sub <- dplyr::filter(data, ~STATE == state.num)
   if(nrow(data.sub) == 0L) {
     message("no accidents to plot")
     return(invisible(NULL))

@@ -10,17 +10,16 @@ if the file does not exist it will return a warning and returns a NULL inside th
 fars_read_years(years)
 }
 \arguments{
-\item{year}{a vector of integers where each integer is a year,}
-}
-\value{
-a list of tbl_df each having two columns MONTH and year and NULL for the non-existing Years with a warning
+\item{years}{target years}
 }
 \description{
-this function takes a vector of years and opens the file related to each year and imports it into a tbl_df
-it then takes the part of the tbl_df that belongs to that specific year. then it  takes columns MONTH and year of that tbl_df
-and returns it in the list
-if the file does not exist it will return a warning and returns a NULL inside the list
+#' @references
+  \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
 }
 \examples{
-tibble_vector <- fars_read_years(c(2000, 2001))
+
+\dontrun{
+fars_read_years(c(2016,2017))
+}
+
 }

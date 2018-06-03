@@ -3,22 +3,31 @@
 #' and returns it in the list
 #' if the file does not exist it will return a warning and returns a NULL inside the list
 #'
-#' @param year a vector of integers where each integer is a year,
-#' @import magrittr
+#'#' @references
+#'   \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
+#'
+#' @param years target years
+#'
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
+#' @importFrom dplyr "%>%"
+#' @import magrittr
 #'
-#' @return a list of tbl_df each having two columns MONTH and year and NULL for the non-existing Years with a warning
-#' @export 
+#' @examples
 #'
-#' @examples tibble_vector <- fars_read_years(c(2000, 2001))
+#' \dontrun{
+#' fars_read_years(c(2016,2017))
+#' }
+#'
+#' @export
 fars_read_years <- function(years) {
   lapply(years, function(year) {
-    file <- make_filename(year)
+    filename <- make_filename(year)
+    #print(filename)
     tryCatch({
-      dat <- fars_read(file)
-      dplyr::mutate(dat, year = year) %>% 
-        dplyr::select(MONTH, year)
+      dat <- fars_read(filename)
+      dplyr::mutate(dat, year = ~year) %>%
+        dplyr::select("MONTH", "year")
     }, error = function(e) {
       warning("invalid year: ", year)
       return(NULL)

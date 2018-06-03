@@ -12,13 +12,7 @@ fars_map_state(state.num, year)
 
 \item{year}{The target year}
 }
-\value{
-a plot of accidents in the given state and the given year. it returns an error if the state does not exist and returns a message if there are no accidents in the given state
-}
 \description{
-This function takes year and a state number and plots the map of accidents. if the state number does not exist
-it will return an error. and if there are no accidents in a state it will stop and returns a message
-}
-\examples{
-fars_map_state(1, 2013)
+#' @references
+  \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
 }

@@ -14,9 +14,10 @@ fars_read(filename)
 returns a tbl_df if the file exists in the directory and will return an error otherwise
 }
 \description{
-reads a file into a tibble
-if the file doesn't exist it returns an error "The file does not exist"
+#' @references
+  \url{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
 }
 \examples{
-fars_read('accident_2013.csv.bz2')
+\dontrun{fars_read('accident_2013.csv.bz2')}
+
 }

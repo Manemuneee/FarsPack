@@ -16,5 +16,5 @@ string which is going to be name of the
 generates the name of the file according to the year
 }
 \examples{
-fileName <- make_file(2014)
+fileName <- make_filename(2014)
 }
